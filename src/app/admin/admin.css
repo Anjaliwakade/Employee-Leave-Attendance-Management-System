@@ -1,0 +1,146 @@
+/* ================= GENERAL ================= */
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f6fa;
+}
+
+.title {
+  text-align: center;
+  margin: 20px 0;
+  color: #2c3e50;
+}
+
+.section-title {
+  margin: 20px 0 10px;
+  color: #34495e;
+}
+
+/* ================= SUMMARY CARDS ================= */
+
+.summary {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 12px;
+  width: 200px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  margin: 0;
+}
+
+.card p {
+  font-size: 24px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.blue {
+  background: #3498db;
+}
+
+.orange {
+  background: #f39c12;
+}
+
+/* ================= TABLE ================= */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.table th {
+  background: #2c3e50;
+  color: white;
+}
+
+/* ================= STATUS ================= */
+
+.status {
+  background: #dff0d8;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.pending {
+  background: #fff3cd;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* ================= BUTTONS ================= */
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.approve {
+  background: #2ecc71;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reject {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.approve:hover {
+  background: #27ae60;
+}
+
+.reject:hover {
+  background: #c0392b;
+}
+
+/* ================= EMPTY STATE ================= */
+
+.empty {
+  text-align: center;
+  color: gray;
+  font-size: 16px;
+}
+
+/* ================= LOGOUT ================= */
+
+.logout {
+  text-align: center;
+  margin: 20px;
+}
+
+.logout button {
+  background: #34495e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

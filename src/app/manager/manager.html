@@ -1,0 +1,158 @@
+<h1>Manager Dashboard</h1>
+
+<div class="top-actions">
+  <button (click)="logout()">Logout</button>
+</div>
+
+<hr>
+
+<!-- ================= APPLY LEAVE ================= -->
+<div class="card">
+
+  <h2>Apply Leave</h2>
+
+  <input [(ngModel)]="leave.leaveType" placeholder="CL / SL / EL">
+  <input [(ngModel)]="leave.reason" placeholder="Reason">
+
+  <br><br>
+
+  <input type="date" [(ngModel)]="leave.fromDate">
+  <input type="date" [(ngModel)]="leave.toDate">
+
+  <br><br>
+
+  <button (click)="submitLeave()">Submit Leave</button>
+
+</div>
+
+<hr>
+
+<!-- ================= PENDING REQUESTS ================= -->
+<h2>Pending Leave Requests</h2>
+
+<p>Total Pending: {{ pendingLeaves.length }}</p>
+
+<table>
+
+  <tr>
+    <th>Employee Name</th>
+    <th>ID</th>
+    <th>Type</th>
+    <th>Reason</th>
+    <th>From Date</th>
+    <th>To Date</th>
+    <th>Action</th>
+  </tr>
+
+  <tr *ngFor="let leave of pendingLeaves">
+
+    <td>
+      {{ leave.employee?.firstName }} {{ leave.employee?.lastName }}
+    </td>
+
+    <td>{{ leave.employee?.employeeId }}</td>
+    <td>{{ leave.leaveType }}</td>
+    <td>{{ leave.reason }}</td>
+    <td>{{ leave.fromDate }}</td>
+    <td>{{ leave.toDate }}</td>
+
+    <td>
+      <button (click)="approveLeave(leave.leaveId)">
+        Approve
+      </button>
+
+      <button class="reject" (click)="rejectLeave(leave.leaveId)">
+        Reject
+      </button>
+    </td>
+
+  </tr>
+
+</table>
+
+<hr>
+
+<!-- ================= MY LEAVE HISTORY ================= -->
+<h2>My Leave History</h2>
+
+<table>
+
+  <tr>
+    <th>Type</th>
+    <th>Reason</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Status</th>
+  </tr>
+
+  <tr *ngFor="let leave of allLeaves">
+
+    <td>{{ leave.leaveType }}</td>
+    <td>{{ leave.reason }}</td>
+    <td>{{ leave.fromDate }}</td>
+    <td>{{ leave.toDate }}</td>
+
+    <td>
+      <span
+        [ngClass]="{
+          pending: leave.status === 'PENDING_MANAGER' || leave.status === 'PENDING_ADMIN',
+          approved: leave.status === 'APPROVED',
+          rejected: leave.status === 'REJECTED'
+        }">
+
+        {{
+          leave.status === 'PENDING_MANAGER' || leave.status === 'PENDING_ADMIN'
+            ? 'Pending'
+            : leave.status
+        }}
+
+      </span>
+    </td>
+
+  </tr>
+
+</table>
+
+<hr>
+
+<!-- ================= ATTENDANCE ================= -->
+<h2>Employee Attendance</h2>
+
+<table>
+
+  <tr>
+    <th>Employee Name</th>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Check In</th>
+    <th>Check Out</th>
+    <th>Hours</th>
+  </tr>
+
+  <tr *ngFor="let a of attendanceList">
+
+    <td>
+      {{ a.employee?.firstName }} {{ a.employee?.lastName }}
+    </td>
+
+    <td>{{ a.employee?.employeeId }}</td>
+    <td>{{ a.date }}</td>
+    <td>{{ a.checkInTime || '-' }}</td>
+    <td>{{ a.checkOutTime || '-' }}</td>
+    <td>{{ a.workingHours || 0 }}</td>
+
+  </tr>
+
+</table>
+
+<hr>
+
+<!-- ================= ACTIONS ================= -->
+<div class="card">
+
+  <h3>Attendance Actions</h3>
+
+  <button (click)="checkIn()">Check In</button>
+  <button (click)="checkOut()">Check Out</button>
+
+</div>

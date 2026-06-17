@@ -1,0 +1,143 @@
+<h1 class="title">Admin Dashboard</h1>
+
+<!-- ================= SUMMARY CARDS ================= -->
+<div class="summary">
+
+  <div class="card blue">
+    <h3>Total Employees</h3>
+    <p>{{ employees.length }}</p>
+  </div>
+
+  <div class="card orange">
+    <h3>Pending Approvals</h3>
+    <p>{{ pendingAdminLeaves.length }}</p>
+  </div>
+
+</div>
+
+<hr />
+
+<!-- ================= EMPLOYEES ================= -->
+<h2 class="section-title">Employees</h2>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let emp of employees">
+
+      <td>{{ emp.employeeId }}</td>
+      <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.role }}</td>
+      <td>
+        <span class="status">{{ emp.status }}</span>
+      </td>
+
+    </tr>
+  </tbody>
+
+</table>
+
+<hr />
+
+<!-- ================= LEAVE APPROVAL ================= -->
+<h2 class="section-title">Leave Approval Requests</h2>
+
+<p *ngIf="pendingAdminLeaves.length === 0" class="empty">
+  🎉 No pending requests
+</p>
+
+<table class="table" *ngIf="pendingAdminLeaves.length > 0">
+
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Type</th>
+      <th>Reason</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let leave of pendingAdminLeaves">
+
+      <td>
+        {{ leave.employee?.firstName }} {{ leave.employee?.lastName }}
+      </td>
+
+      <td>{{ leave.leaveType }}</td>
+      <td>{{ leave.reason }}</td>
+      <td>{{ leave.fromDate }}</td>
+      <td>{{ leave.toDate }}</td>
+
+      <td>
+        <span class="pending">{{ leave.status }}</span>
+      </td>
+
+      <td class="actions">
+
+        <button class="approve"
+                (click)="approveLeave(leave.leaveId)">
+          ✔ Approve
+        </button>
+
+        <button class="reject"
+                (click)="rejectLeave(leave.leaveId)">
+          ✖ Reject
+        </button>
+
+      </td>
+
+    </tr>
+  </tbody>
+
+</table>
+
+<hr />
+
+
+<h2>Daily Attendance (Employee + Manager)</h2>
+
+<table border="1" width="100%">
+
+  <tr>
+    <th>Name</th>
+    <th>Role</th>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Check In</th>
+    <th>Check Out</th>
+    <th>Hours</th>
+  </tr>
+
+  <tr *ngFor="let a of attendanceList">
+
+    <td>{{ a.name }}</td>
+    <td>{{ a.role }}</td>
+    <td>{{ a.employeeId }}</td>
+
+    <td>{{ a.date }}</td>
+    <td>{{ a.checkIn }}</td>
+    <td>{{ a.checkOut }}</td>
+    <td>{{ a.hours }}</td>
+
+  </tr>
+
+</table>
+<!-- ================= LOGOUT ================= -->
+<div class="logout">
+  <button (click)="logout()">Logout</button>
+</div>

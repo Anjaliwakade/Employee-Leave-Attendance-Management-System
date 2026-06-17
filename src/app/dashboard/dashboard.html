@@ -1,0 +1,76 @@
+<h1>Employee Leave & Attendance Dashboard</h1>
+
+<h3>Welcome, {{ email }}</h3>
+
+<button routerLink="/leave">Apply Leave</button>
+<button (click)="logout()">Logout</button>
+
+<hr>
+
+<!-- ================= LEAVE BALANCE ================= -->
+<h2>Leave Balance</h2>
+
+<p>Casual Leave : {{ casualLeave }}</p>
+<p>Sick Leave : {{ sickLeave }}</p>
+<p>Earned Leave : {{ earnedLeave }}</p>
+
+<hr>
+
+<!-- ================= ATTENDANCE ================= -->
+<h2>Attendance</h2>
+
+<button (click)="checkIn()">Check In</button>
+<button (click)="checkOut()">Check Out</button>
+
+<br><br>
+
+<table border="1">
+
+  <tr>
+    <th>Date</th>
+    <th>Check In</th>
+    <th>Check Out</th>
+    <th>Working Hours</th>
+    <th>Status</th>
+  </tr>
+
+  <tr *ngFor="let a of attendanceList">
+
+    <td>{{ a.date }}</td>
+    <td>{{ a.checkInTime }}</td>
+    <td>{{ a.checkOutTime }}</td>
+    <td>{{ a.workingHours }}</td>
+    <td>{{ a.status }}</td>
+
+  </tr>
+
+</table>
+
+<hr>
+
+<!-- ================= LEAVE HISTORY ================= -->
+<h2>My Leaves</h2>
+
+<p>Total Leaves: {{ leaves.length }}</p>
+
+<table border="1">
+
+  <tr>
+    <th>Type</th>
+    <th>Reason</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Status</th>
+  </tr>
+
+  <tr *ngFor="let leave of leaves">
+
+    <td>{{ leave.leaveType }}</td>
+    <td>{{ leave.reason }}</td>
+    <td>{{ leave.fromDate }}</td>
+    <td>{{ leave.toDate }}</td>
+    <td>{{ leave.status }}</td>
+
+  </tr>
+
+</table>

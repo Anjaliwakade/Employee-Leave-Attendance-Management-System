@@ -1,0 +1,53 @@
+<h2>Apply Leave</h2>
+
+<form (ngSubmit)="applyLeave()">
+
+  <label>Leave Type</label>
+
+  <select
+    [(ngModel)]="leaveType"
+    name="leaveType">
+
+    <option value="CL">
+      Casual Leave
+    </option>
+
+    <option value="SL">
+      Sick Leave
+    </option>
+
+    <option value="EL">
+      Earned Leave
+    </option>
+
+  </select>
+
+  <br><br>
+
+  <input
+    type="text"
+    placeholder="Reason"
+    [(ngModel)]="reason"
+    name="reason" />
+
+  <br><br>
+
+  <input
+    type="date"
+    [(ngModel)]="fromDate"
+    name="fromDate" />
+
+  <br><br>
+
+  <input
+    type="date"
+    [(ngModel)]="toDate"
+    name="toDate" />
+
+  <br><br>
+
+  <button type="submit">
+    Submit
+  </button>
+
+</form>
